@@ -600,17 +600,6 @@ const InputArea: React.FC<{
         <div className="text-xs text-gray-400 mb-2">Try asking:</div>
         <div className="flex flex-wrap gap-2">
           <SuggestedQuestion 
-            question="What is the molar mass of hydrogen?" 
-            onClick={() => {
-              setInput("What is the molar mass of hydrogen?");
-              if (textareaRef.current) {
-                textareaRef.current.style.height = 'auto';
-                textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px';
-              }
-            }}
-            bgColor="from-red-500 to-orange-500" // Chemistry
-          />
-          <SuggestedQuestion 
             question="Calculate kinetic energy of an object moving at 5m/s with mass of 5 grams" 
             onClick={() => {
               setInput("Calculate kinetic energy of an object moving at 5m/s with mass of 5 grams");
@@ -644,9 +633,9 @@ const InputArea: React.FC<{
             bgColor="from-teal-500 to-green-500" // Biology
           />
           <SuggestedQuestion 
-            question="Calculate compound interest on $1000 at 5% for 3 years" 
+            question="Calculate simple interest on $1000 at 5% for 3 years" 
             onClick={() => {
-              setInput("Calculate compound interest on $1000 at 5% for 3 years");
+              setInput("Calculate simple interest on $1000 at 5% for 3 years");
               if (textareaRef.current) {
                 textareaRef.current.style.height = 'auto';
                 textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px';

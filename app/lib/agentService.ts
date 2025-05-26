@@ -334,10 +334,21 @@ const healthFunctions = {
 let genAI: GoogleGenerativeAI | null = null;
 
 export const initializeGemini = () => {
-  if (!process.env.GEMINI_API_KEY) {
-    throw new Error('Gemini API key is required');
+  const apiKey = process.env.GEMINI_API_KEY;
+  
+  if (!apiKey) {
+    console.error('Gemini API key is missing. Please check your .env file and ensure GEMINI_API_KEY is properly set.');
+    throw new Error('Gemini API key is required. Check your .env configuration.');
   }
-  genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+  
+  try {
+    console.log('Initializing Gemini with API key');
+    genAI = new GoogleGenerativeAI(apiKey);
+    console.log('Gemini initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize Gemini:', error);
+    throw new Error(`Failed to initialize Gemini: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
 };
 
 const callGeminiAgent = async (systemPrompt: string, userQuery: string): Promise<string> => {
